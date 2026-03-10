@@ -11,8 +11,13 @@ services:
       - ..proxy/Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
       - caddy_config:/config
+    networks:
+      - homelab
 
     volumes:
       caddy_data:
       caddy_config:
+
+  networks:
+    homelab:
 
