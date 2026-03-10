@@ -1,0 +1,4 @@
+services/*/data
+*.log
+*.sqlite
+*.db
