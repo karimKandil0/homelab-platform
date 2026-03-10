@@ -53,3 +53,14 @@ services:
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
     restart: unless-stopped
+
+  gitea:
+    image: gitea/gitea:latest
+    container_name: gitea
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.gitea.rule=Host(`gitea.localhost`)"
+      - "traefik.http.services.gitea.loadbalancer.server.port=3000"
+    volumes:
+      - ./services/gitea/data:/data
+    restart: unless-stopped
