@@ -6,8 +6,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.vault.rule=Host(`vault.localhost`)"
       - "traefik.http.services.vault.loadbalancer.server.port=80"
-    ports:
-      - "8081:80"
     volumes:
       - ./services/vaultwarden/data:/data
     restart: unless-stopped
@@ -19,8 +17,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.grafana.rule=Host(`grafana.localhost`)"
       - "traefik.http.services.grafana.loadbalancer.server.port=3000"
-    ports:
-      - "3001:3000"
     volumes:
       - ./services/grafana/data:/var/lib/grafana
     restart: unless-stopped
@@ -39,8 +35,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.prom.rule=Host(`prometheus.localhost`)"
       - "traefik.http.services.prom.loadbalancer.server.port=9090"
-    ports:
-      - "9090:9090"
     volumes:
       - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     restart: unless-stopped
@@ -52,6 +46,7 @@ services:
       - "--api.dashboard=true"
       - "--providers.docker=true"
       - "--entrypoints.web.address=:80"
+      - "--api.insecure=true"
     ports:
       - "8088:80"
       - "8080:8080"
