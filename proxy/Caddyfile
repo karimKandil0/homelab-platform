@@ -1,17 +1,17 @@
 {
-    auto_https off
+	auto_https off
 }
 
 :80 {
-    @home host {$HOME_HOST}
-    reverse_proxy @home homepage:3000
+	@home host {$HOME_HOST}
+	reverse_proxy @home homepage:3000
 
-    @vault host {$VAULT_HOST}
-    reverse_proxy @vault vaultwarden:80
+	@vault host {$VAULT_HOST}
+	reverse_proxy @vault vaultwarden:80
 
-    @grafana host {$GRAFANA_HOST}
-    reverse_proxy @grafana grafana:3000
+	@grafana host {$GRAFANA_HOST}
+	reverse_proxy @grafana grafana:3000
 
-    @gitea host {$GITEA_HOST}
-    reverse_proxy @gitea gitea:3000
+	@gitea host {$GITEA_HOST}
+	reverse_proxy @gitea gitea:3000
 }
