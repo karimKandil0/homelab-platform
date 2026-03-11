@@ -1,5 +1,4 @@
-services/*/data
-services/gitea/data/*
+data/
 .env
 *.log
 *.sqlite*

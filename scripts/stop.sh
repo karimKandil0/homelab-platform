@@ -2,6 +2,6 @@
 
 echo "Stopping homelab platform..."
 
-docker compose down
+docker compose -f ../compose/stack.yml down
 
 echo "Services stopped."
