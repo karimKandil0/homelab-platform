@@ -50,12 +50,14 @@ if $INSTALL_DOCKER || $INSTALL_GETTEXT; then
     echo " Installing missing dependencies..."
 fi
 
+DISTRO=$(echo "$ID" | tr '[:upper:]' '[:lower:]')
+
 case "$DISTRO" in
     ubuntu|debian)
         sudo apt update
 
         if $INSTALL_DOCKER; then
-            sudo apt install -y docker.io docker-compose-plugin
+            sudo apt install -y docker.io docker-compose
         fi
 
         if $INSTALL_GETTEXT; then
@@ -88,8 +90,6 @@ case "$DISTRO" in
         exit 1
         ;;
 esac
-
-DISTRO=$(echo "$ID" | tr '[:upper:]' '[:lower:]')
 
 if ! systemctl is-active --quiet docker; then 
     echo "Starting Docker..."
