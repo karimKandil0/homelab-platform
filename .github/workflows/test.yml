@@ -1,0 +1,25 @@
+name: Installer Test
+
+on: [push]
+
+jobs:
+
+  ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo ./scripts/setup.sh
+
+  debian:
+    runs-on: ubuntu-latest
+    container: debian:12
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo ./scripts/setup.sh
+     
+  arch:
+    runs-on: ubuntu-latest
+    container: archlinux:latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo ./scripts/setup.sh
