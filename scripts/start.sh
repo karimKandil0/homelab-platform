@@ -12,6 +12,8 @@ set -a
 source .env
 set +a
 
+envsubst < homepage/services.yaml.template > homepage/services.yaml
+
 docker compose -f compose/stack.yml pull
 docker compose \
   --env-file .env \
@@ -24,6 +26,7 @@ echo ""
 echo "Services started!"
 echo "Access them at:"
 echo ""
+echo "homepage -> http://$HOME_HOST:$PORT"
 echo "vaultwarden -> http://$VAULT_HOST:$PORT"
 echo "gitea -> http://$GITEA_HOST:$PORT"
 echo "grafana -> http://$GRAFANA_HOST:$PORT"

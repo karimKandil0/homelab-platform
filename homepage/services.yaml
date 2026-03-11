@@ -1,0 +1,17 @@
+- Platform:
+    - Home:
+        href: http://home.localhost:8080
+        description: Platform dashboard
+
+    - Vaultwarden:
+        href: http://vault.localhost:8080
+        description: Password manager
+        
+    - Gitea:
+        href: http://gitea.localhost:8080
+        description: Git hosting
+
+    - Grafana:
+        href: http://grafana.localhost:8080
+        description: Metrics dashboard
+     

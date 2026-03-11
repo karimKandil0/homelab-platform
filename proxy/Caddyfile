@@ -2,7 +2,10 @@
     auto_https off
 }
 
-:8080 {
+:80 {
+    @home host {$HOME_HOST}
+    reverse_proxy @home homepage:3000
+
     @vault host {$VAULT_HOST}
     reverse_proxy @vault vaultwarden:80
 

@@ -1,0 +1,17 @@
+- Platform:
+    - Home:
+        href: http://${HOME_HOST}:${PORT}
+        description: Platform dashboard
+
+    - Vaultwarden:
+        href: http://${VAULT_HOST}:${PORT}
+        description: Password manager
+        
+    - Gitea:
+        href: http://${GITEA_HOST}:${PORT}
+        description: Git hosting
+
+    - Grafana:
+        href: http://${GRAFANA_HOST}:${PORT}
+        description: Metrics dashboard
+     

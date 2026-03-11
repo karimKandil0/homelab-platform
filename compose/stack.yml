@@ -3,7 +3,13 @@ services:
     image: caddy:2
     container_name: homelab-caddy
     restart: unless-stopped
+    environment:
+      - HOME_HOST=${HOME_HOST}
+      - VAULT_HOST=${VAULT_HOST}
+      - GITEA_HOST=${GITEA_HOST}
+      - GRAFANA_HOST=${GRAFANA_HOST}
     depends_on:
+      - homepage
       - vaultwarden
       - gitea
       - grafana
@@ -13,6 +19,19 @@ services:
       - ../proxy/Caddyfile:/etc/caddy/Caddyfile
       - caddy_data:/data
       - caddy_config:/config
+    networks:
+      - homelab
+
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homelab-homepage
+    environment:
+      - HOST=0.0.0.0
+      - PORT=3000
+      - HOMEPAGE_ALLOWED_HOSTS=${HOME_HOST}:${PORT}
+    volumes:
+      - ../homepage:/app/config
+    restart: unless-stopped
     networks:
       - homelab
 
