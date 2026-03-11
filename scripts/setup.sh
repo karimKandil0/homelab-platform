@@ -166,7 +166,7 @@ echo "Setting container permissions..."
 sudo chown -R 1000:1000 data/vaultwarden || true
 sudo chown -R 1000:1000 data/gitea || true
 sudo chown -R 472:472 data/grafana || true
-sudo chown -R $(id -u):$(id -g) data
+sudo chown -R $(id -u):$(id -g) data || true
 
 echo ""
 echo "You may need to log out and back in for Docker permissions"
