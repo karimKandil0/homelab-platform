@@ -9,8 +9,10 @@ echo " - Create data directories with correct permissions."
 echo ""
 echo "You can review this scripts before running it."
 echo ""
-echo "Requesting sudo access to initialize StarterLab..."
-sudo -v
+if command -v sudo >/dev/null 2>&1; then
+    echo "Requesting sudo access to initialize StarterLab..."
+    sudo -v
+fi
 echo ""
 echo ""
 echo ""
@@ -55,34 +57,34 @@ DISTRO=$(echo "$ID" | tr '[:upper:]' '[:lower:]')
 
 case "$DISTRO" in
     ubuntu|debian)
-        sudo apt update
+        apt update
 
         if $INSTALL_DOCKER; then
-            sudo apt install -y docker.io docker-compose
+            apt install -y docker.io docker-compose
         fi
 
         if $INSTALL_GETTEXT; then
-            sudo apt install -y gettext
+            apt install -y gettext
         fi
         ;;
 
     arch)
         if $INSTALL_DOCKER; then
-            sudo pacman -Sy --noconfirm docker docker-compose
+            pacman -Sy --noconfirm docker docker-compose
         fi
 
         if $INSTALL_GETTEXT; then
-            sudo pacman -Sy --noconfirm gettext
+            pacman -Sy --noconfirm gettext
         fi
         ;;
 
     fedora)
         if $INSTALL_DOCKER; then
-            sudo dnf install -y docker docker-compose-plugin
+            dnf install -y docker docker-compose-plugin
         fi
 
         if $INSTALL_GETTEXT; then
-            sudo dnf install -y gettext
+            dnf install -y gettext
         fi
         ;;
 
@@ -95,8 +97,8 @@ esac
 if command -v systemctl >/dev/null 2>&1; then
     if ! systemctl is-active --quiet docker; then 
         echo "Starting Docker..."
-        sudo systemctl enable docker
-        sudo systemctl start docker
+        systemctl enable docker
+        systemctl start docker
     fi
 else 
     echo "systemd not detected, skipping Docker service management."
@@ -174,10 +176,10 @@ mkdir -p data/vaultwarden
 echo ""
 echo "Setting container permissions..."
 
-sudo chown -R 1000:1000 data/vaultwarden || true
-sudo chown -R 1000:1000 data/gitea || true
-sudo chown -R 472:472 data/grafana || true
-sudo chown -R $(id -u):$(id -g) data || true
+chown -R 1000:1000 data/vaultwarden || true
+chown -R 1000:1000 data/gitea || true
+chown -R 472:472 data/grafana || true
+chown -R $(id -u):$(id -g) data || true
 
 echo ""
 echo "You may need to log out and back in for Docker permissions"
