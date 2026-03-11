@@ -3,12 +3,12 @@
 }
 
 :80 {
-    @vault host vault.localhost
+    @vault host {$VAULT_HOST}
     reverse_proxy @vault vaultwarden:80
 
-    @grafana host grafana.localhost
+    @grafana host {$GRAFANA_HOST}
     reverse_proxy @grafana grafana:3000
 
-    @gitea host gitea.localhost
+    @gitea host {$GITEA_HOST}
     reverse_proxy @gitea gitea:3000
 }
