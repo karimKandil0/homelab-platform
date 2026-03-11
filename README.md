@@ -1,4 +1,4 @@
-# Homelab Platform
+# StarterLab
 
 A lightweight **self-hosted infrastructure platform** built with **Docker Compose and Caddy** that demonstrates how multiple services can run behind a reverse proxy with persistent storage and simple lifecycle scripts.
 
@@ -16,6 +16,7 @@ The platform currently includes:
 
 | Service | Purpose |
 |--------|--------|
+| HomePage | Homepage for all services |
 | Vaultwarden | Self-hosted password manager |
 | Gitea | Lightweight Git service |
 | Grafana | Metrics visualization platform |
@@ -35,6 +36,7 @@ Browser
    ▼
 Caddy (Reverse Proxy)
    │
+   ├── Homepage
    ├── Vaultwarden
    ├── Gitea
    └── Grafana
@@ -67,18 +69,6 @@ cd homelab-platform
 
 ---
 
-## 2. Configure environment variables
-
-Copy the example configuration:
-
-```bash
-cp .env.example .env
-```
-
-You may edit `.env` to change ports or hostnames.
-
----
-
 ## 3. Start the platform
 
 ```bash
@@ -91,9 +81,10 @@ Docker images will be pulled and the platform will start.
 
 ## 4. Access services
 
-Once started, the services will be available at:
+Once started, the services (by default) will be available at:
 
 ```
+Homepage → http://home.localhost:8080
 Vaultwarden → http://vault.localhost:8080
 Gitea       → http://gitea.localhost:8080
 Grafana     → http://grafana.localhost:8080
@@ -122,6 +113,7 @@ Example configuration:
 ```env
 PORT=8080
 
+HOME_HOST=home.localhost
 VAULT_HOST=vault.localhost
 GITEA_HOST=gitea.localhost
 GRAFANA_HOST=grafana.localhost
@@ -154,6 +146,7 @@ homelab-platform
 │   └── architecture.md
 │
 ├── data/
+│   ├── homepage/
 │   ├── gitea/
 │   ├── grafana/
 │   └── vaultwarden/
@@ -217,6 +210,7 @@ To run this platform you need:
 - Docker
 - Docker Compose
 - Bash shell
+- gettext
 
 Most Linux distributions and macOS systems support this setup.
 
@@ -247,8 +241,7 @@ docker logs homelab-caddy
 ## Restart platform
 
 ```bash
-./scripts/stop.sh
-./scripts/start.sh
+./scripts/restart.sh
 ```
 
 ---
