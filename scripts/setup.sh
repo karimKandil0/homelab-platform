@@ -62,7 +62,7 @@ case "$DISTRO" in
 	;;
     fedora)
         $INSTALL_DOCKER && sudo dnf install -y docker docker-compose-plugin
-	&INSTALL_GETTEXT && sudo dnf install -y gettext
+	$INSTALL_GETTEXT && sudo dnf install -y gettext
     *)
         echo "Unsupported distro: $DISTRO"
 	exit 1
