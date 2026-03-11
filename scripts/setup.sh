@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -Eeuo pipefall
+set -Eeuo pipefail
 
 echo ""
 echo "This scripts may request sudo privileges in order to:"
