@@ -117,11 +117,12 @@ if [[ "$1" == "--non-interactive" ]]; then
 else
 
     read -rp "Port for StarterLab [8080]:" PORT
+    PORT=${PORT:-8080}
+
     if ! [[ "$PORT" =~ ^[0-9]+$ ]]; then
         echo "Invalid port."
         exit 1
     fi
-    PORT=${PORT:-8080}
 
     read -rp "Enable Vaultwarden? (Y/n):" ENABLE_VAULT
     ENABLE_VAULT=${ENABLE_VAULT:-Y}
