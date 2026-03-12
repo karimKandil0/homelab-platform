@@ -22,7 +22,11 @@ if ! command -v docker &> /dev/null; then
     exit 1
 fi
 
-if ! docker compose version &> /dev/null; then
+if command -v docker-compose >/dev/null 2>&1; then
+    COMPOSE="docker-compose"
+elif docker compose version >/dev/null 2>&1; then
+    COMPOSE="docker compose"
+else
     echo "Error: Docker Compose is not available."
     echo "Install Docker Compose plugin."
     exit 1
@@ -35,7 +39,7 @@ fi
 
 echo ""
 echo "Docker version: $(docker --version)"
-echo "Compose version: $(docker compose version)"
+echo "Compose version: $($COMPOSE version)"
 echo ""
 
 if ! docker info &> /dev/null; then
