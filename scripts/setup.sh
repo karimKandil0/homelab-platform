@@ -114,7 +114,7 @@ echo "Configuration"
 echo "============="
 
 
-if [[ "$1" == "--non-interactive" ]]; then
+if [[ "${1:-}" == "--non-interactive" ]]; then
     PORT=8080
     ENABLE_VAULT=y
     ENABLE_GITEA=y
