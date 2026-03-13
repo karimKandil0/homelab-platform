@@ -32,7 +32,6 @@ services:
 
   vaultwarden:
     image: vaultwarden/server:latest
-    profiles: [ "vaultwarden" ]
     container_name: homelab-vaultwarden
     restart: unless-stopped
     volumes:
@@ -45,7 +44,6 @@ services:
 
   gitea:
     image: gitea/gitea:latest
-    profiles: [ "git" ]
     container_name: homelab-gitea
     restart: unless-stopped
     volumes:
@@ -57,7 +55,6 @@ services:
 
   grafana:
     image: grafana/grafana:latest
-    profiles: [ "grafana" ]
     container_name: homelab-grafana
     restart: unless-stopped
     volumes:
