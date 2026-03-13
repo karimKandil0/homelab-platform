@@ -1,7 +1,3 @@
-{
-	auto_https off
-}
-
 :80 {
 	@home host {$HOME_HOST}
 	reverse_proxy @home homepage:3000
