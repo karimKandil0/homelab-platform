@@ -61,6 +61,8 @@ services:
     restart: unless-stopped
     volumes:
       - ../data/grafana:/var/lib/grafana
+      - ../config/grafana/provisioning:/etc/grafana/provisioning
+      - ../config/grafana/dashboards:/etc/grafana/provisioning/dashboards
     networks:
       homelab:
         aliases:
