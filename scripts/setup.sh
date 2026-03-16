@@ -23,6 +23,12 @@ echo "StarterLab Setup"
 echo "================"
 echo ""
 
+# CI detection
+
+if [ "${CI:-}" = "true" ] || [ -f /.dockerenv ]; then
+    INSTALL_DOCKER=false
+    echo "CI/container detected - skipping Docker installation."
+fi
 
 # Detect OS
 
