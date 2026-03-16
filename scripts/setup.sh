@@ -202,9 +202,9 @@ fi
 echo ""
 echo "Creating data directories"
 
-mkdir -p data/gitea
-mkdir -p data/grafana
-mkdir -p data/vaultwarden
+for dir in gitea grafana prometheus vaultwarden; do
+    mkdir -p "data/$dir"
+done
 
 # Set permissions
 
@@ -214,7 +214,7 @@ echo "Setting container permissions..."
 $SUDO chown -R 1000:1000 data/vaultwarden || true
 $SUDO chown -R 1000:1000 data/gitea || true
 $SUDO chown -R 472:472 data/grafana || true
-$SUDO chown -R $(id -u):$(id -g) data || true
+$SUDO chown -R 65534:65534 data/prometheus || true
 
 echo ""
 echo "You may need to log out and back in for Docker permissions"

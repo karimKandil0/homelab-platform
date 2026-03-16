@@ -66,6 +66,40 @@ services:
         aliases:
           - grafana
 
+  prometheus:
+    image: prom/prometheus:latest
+    profiles:
+      - grafana
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - ../data/prometheus:/prometheus
+      - ../config/prometheus.yml:/etc/prometheus/prometheus.yml
+    command: 
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+    networks:
+      homelab:
+        aliases:
+          - prometheus
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    profiles:
+      - grafana
+    restart: unless-stopped
+    ports:
+      - "9100:9100"
+    volumes:
+      - /:/host:ro,rslave
+    command:
+      - '--path.rootfs=/host'
+    networks:
+      homelab:
+        aliases:
+          - node-exporter
+
 networks:
   homelab:
 
