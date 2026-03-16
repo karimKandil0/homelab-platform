@@ -120,7 +120,7 @@ if [[ "$ENABLE_GRAFANA" == "Y" ]]; then
 fi
 
 echo ""
-echo "Use 'docker compose ps' to view container status."
+echo "Use 'docker ps' to view container status."
 END_TIME=$(date +%s)
 echo ""
 echo "Startup completed in $((END_TIME - START_TIME))s"
