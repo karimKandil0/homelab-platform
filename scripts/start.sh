@@ -69,20 +69,33 @@ echo "Generating homepage configuration..."
 
 envsubst < homepage/services.yaml.template > homepage/services.yaml
 
+# Profiles
+
+PROFILES=()
+
+[ "$ENABLE_VAULTWARDEN" = "Y" ] && PROFILES+=(--profile vaultwarden)
+[ "$ENABLE_GITEA" = "Y" ] && PROFILES+=(--profile gitea)
+[ "$ENABLE_GRAFANA" = "Y" ] && PROFILES+=(--profile grafana)
+
 # Pull images
 
 echo "Pulling containers..."
 
-"${COMPOSE[@]}" -f compose/stack.yml pull
+"${COMPOSE[@]}" \
+  "${PROFILES[@]}" \
+  --env-file .env \
+  -f compose/stack.yml \
+  pull
 
 # Start stack
 
 echo "Starting containers..."
 
 "${COMPOSE[@]}" \
-    --env-file .env \
-    -f compose/stack.yml \
-    up -d
+  "${PROFILES[@]}" \
+  --env-file .env \
+  -f compose/stack.yml \
+  up -d
 
 # Success message
 

@@ -1,7 +1,6 @@
 services:
   caddy:
     image: caddy:2
-    container_name: homelab-caddy
     restart: unless-stopped
     environment:
       - HOME_HOST=${HOME_HOST}
@@ -20,7 +19,6 @@ services:
 
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
-    container_name: homelab-homepage
     environment:
       - HOST=0.0.0.0
       - PORT=3000
@@ -33,7 +31,8 @@ services:
 
   vaultwarden:
     image: vaultwarden/server:latest
-    container_name: homelab-vaultwarden
+    profiles:
+      - vaultwarden
     restart: unless-stopped
     volumes:
       - ../data/vaultwarden:/data
@@ -45,8 +44,9 @@ services:
 
   gitea:
     image: gitea/gitea:latest
-    container_name: homelab-gitea
     restart: unless-stopped
+    profiles:
+      - gitea
     volumes:
       - ../data/gitea:/data
     networks:
@@ -56,7 +56,8 @@ services:
 
   grafana:
     image: grafana/grafana:latest
-    container_name: homelab-grafana
+    profiles:
+      - grafana
     restart: unless-stopped
     volumes:
       - ../data/grafana:/var/lib/grafana

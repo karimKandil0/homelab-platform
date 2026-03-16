@@ -17,6 +17,6 @@ echo "Stopping homelab platform..."
 "${COMPOSE[@]}" \
   --env-file .env \
   -f compose/stack.yml \
-  down
+  down --remove-orphans
 
 echo "Services stopped."
