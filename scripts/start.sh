@@ -106,9 +106,18 @@ echo "Access them at:"
 echo ""
 
 printf "  %-12s %s\n" "homepage ->" "http://$HOME_HOST:$PORT"
-printf "  %-12s %s\n" "vaultwarden ->" "http://$VAULT_HOST:$PORT"
-printf "  %-12s %s\n" "gitea ->" "http://$GITEA_HOST:$PORT"
-printf "  %-12s %s\n" "grafana ->" "http://$GRAFANA_HOST:$PORT"
+
+if [[ "$ENABLE_VAULTWARDEN" == "Y" ]]; then
+    printf "  %-12s %s\n" "vaultwarden ->" "http://$VAULT_HOST:$PORT"
+fi
+
+if [[ "$ENABLE_GITEA" == "Y" ]]; then
+    printf "  %-12s %s\n" "gitea ->" "http://$GITEA_HOST:$PORT"
+fi
+
+if [[ "$ENABLE_GRAFANA" == "Y" ]]; then
+    printf "  %-12s %s\n" "grafana ->" "http://$GRAFANA_HOST:$PORT"
+fi
 
 echo ""
 echo "Use 'docker compose ps' to view container status."
