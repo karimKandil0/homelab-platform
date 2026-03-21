@@ -3,9 +3,13 @@
 
 StarterLab is a self-hosted development environment bootstrapper that provisions a full stack of services using Docker, with a single command.
 
+### Homepage
 ![Homepage](docs/images/homepage.png)
+### Grafana
 ![Grafana](docs/images/grafana.png)
+### Vaultwarden
 ![Vaultwarden](docs/images/vault.png)
+### Gitea
 ![Gitea](docs/images/gitea.png)
 
 ## Features
